@@ -7,7 +7,7 @@ load_dotenv()
 
 def mail_app(url_adress,Dev_Team,service,istirak,http_https,SSL_izleme):
 
-    url = "{}/api/v2/job_templates/142/launch/".format(os.getenv("AWX_ADRESS"))
+    url = "{}/api/v2/job_templates/launch/".format(os.getenv("AWX_ADRESS"))
     payload = {
         "extra_vars": {
             "url_adress": url_adress,
