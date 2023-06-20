@@ -1,0 +1,73 @@
+---
+- name: Sending E-Mail with Ansible Module
+  hosts: localhost
+  serial: 1
+  become: true
+  become_method: sudo
+  tasks:
+    - name: send email with the report attached
+      mail:
+        host: {{ smtp_server }}
+        port: {{ smtp_port }}
+        subject: "Let me Know about my Redis Servers"
+        body: |
+          Responsible: Team Responsible
+          Service: {{ service }}
+          Related Company: {{ istirak }}
+          OS: Ubuntu
+          Servers:
+          1. Servers: {{ server_1 }}:6379
+          2. Servers: {{ server_2 }}:6379
+          3. Servers: {{ server_3 }}:6379
+          4. Servers: {{ server_4 }}:6379
+          King Regards.
+
+        from: "ansiblemonitoring"
+        cc: "lightninhmcqueen@anymailgroup.com"
+        to: "tarik@anymailgroup.com"
+      run_once: true
+      when: service == "Redis"
+    - name: send email with the report attached
+      mail:
+        host: {{ smtp_server }}
+        port: {{ smtp_port }}
+        subject: "Let me Know about my ELK Servers"
+        body: |
+          Responsible: Team Responsible
+          Service: {{ service }}
+          Related Company: {{ istirak }}
+          OS: Ubuntu
+          Servers:
+          1. Server: {{ server_1 }}:9200
+          2. Server: {{ server_2 }}:9200
+          3. Server: {{ server_3 }}:9200
+          King Regards.
+
+        from: "ansiblemonitoring"
+        cc: "lightninhmcqueen@anymailgroup.com"
+        to: "tarik@anymailgroup.com"
+      run_once: true
+      when: service == "ELK" and node == "3"
+    - name: send email with the report attached
+      mail:
+        host: {{ smtp_server }}
+        port: {{ smtp_port }}
+        subject: "Let me Know about MY RabbitMQ Servers"
+        body: |
+          Responsible: Team Responsible
+          Service: {{ service }}
+          Related Company: {{ istirak }}
+          OS: Ubuntu
+          Servers:
+          1. Server: {{ server_1 }}:15672
+          2. Server: {{ server_2 }}:15672
+          3. Server: {{ server_3 }}:15672
+          King Regards.
+
+        from: "ansiblemonitoring"
+        cc: "lightninhmcqueen@anymailgroup.com"
+        to: "tarik@anymailgroup.com"
+      run_once: true
+      when: service == "RabbitMQ"
+
+
