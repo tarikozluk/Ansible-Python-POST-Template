@@ -8,8 +8,18 @@ import redis_monitor_request
 import Elastic_notification
 import RabbitMQ_monitor_request
 import app_watcher
+from elasticapm.contrib.flask import ElasticAPM
+
+
 load_dotenv()
 
+app = Flask(__name__)
+app.config['ELASTIC_APM'] = {
+          'SERVICE_NAME': 'Middleware and Application Monitoring',
+          #'SECRET_TOKEN': '',
+          'SERVER_URL': '{}'.format(os.getenv("ELASTIC_APM_SERVER_URL")),
+}
+apm = ElasticAPM(app)
 app = Flask(__name__)
 
 
