@@ -20,7 +20,6 @@ app.config['ELASTIC_APM'] = {
           'SERVER_URL': '{}'.format(os.getenv("ELASTIC_APM_SERVER_URL")),
 }
 apm = ElasticAPM(app)
-app = Flask(__name__)
 
 
 # http://localhost:5000/monitorredis?server_1=server1&server_2=server2&server_3=server3&server_4=server4&service=Redis&istirak=mycompany
